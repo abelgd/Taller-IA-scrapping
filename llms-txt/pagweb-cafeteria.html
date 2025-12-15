@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café Artesanal La Esquina - El Mejor Café de la Ciudad</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header y Navegación */
+        header {
+            background: linear-gradient(135deg, #6B4423 0%, #3E2723 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo::before {
+            content: "☕";
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 1.1rem;
+        }
+
+        nav a:hover {
+            color: #D4A574;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%234A2C2A" width="1200" height="600"/><circle fill="%236B4423" cx="200" cy="150" r="100" opacity="0.3"/><circle fill="%238B6342" cx="900" cy="400" r="150" opacity="0.2"/><rect fill="%233E2723" x="0" y="500" width="1200" height="100"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #D4A574;
+            color: #3E2723;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .btn:hover {
+            background: #B8935F;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Secciones */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #3E2723;
+        }
+
+        /* Sobre Nosotros */
+        .about {
+            background: #F5F5DC;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(45deg, #6B4423, #8B6342);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+        }
+
+        /* Menú */
+        .menu {
+            background: white;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .menu-item {
+            background: #FFF8DC;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .menu-item h3 {
+            color: #6B4423;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .menu-item .price {
+            color: #D4A574;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+
+        .menu-item p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Especialidades */
+        .specialties {
+            background: #3E2723;
+            color: white;
+        }
+
+        .specialties h2 {
+            color: white;
+        }
+
+        .specialty-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .specialty-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .specialty-card:hover {
+            background: rgba(255,255,255,0.15);
+            transform: scale(1.05);
+        }
+
+        .specialty-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Ubicación */
+        .location {
+            background: #F5F5DC;
+        }
+
+        .location-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #8B6342, #6B4423);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .location-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .info-item {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .info-item strong {
+            color: #6B4423;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contacto */
+        .contact {
+            background: white;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #3E2723;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #D4A574;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        /* Footer */
+        footer {
+            background: #3E2723;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .social-links {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            font-size: 1.5rem;
+        }
+
+        .social-links a {
+            color: #D4A574;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content,
+            .location-content {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animación de entrada */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section {
+            animation: fadeIn 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">La Esquina</div>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#menu">Menú</a></li>
+                <li><a href="#especialidades">Especialidades</a></li>
+                <li><a href="#ubicacion">Ubicación</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>Café Artesanal La Esquina</h1>
+            <p>Donde cada taza cuenta una historia</p>
+            <a href="#menu" class="btn">Ver Nuestro Menú</a>
+        </div>
+    </section>
+
+    <section class="about" id="nosotros">
+        <h2>Nuestra Historia</h2>
+        <div class="about-content">
+            <div class="about-image">☕</div>
+            <div class="about-text">
+                <p><strong>Café Artesanal La Esquina</strong> nació en 2018 con una visión clara: crear un espacio donde el café de especialidad y la calidez humana se encuentren.</p>
+                <p>Fundado por María González, barista con 15 años de experiencia, nuestro café se ha convertido en el punto de encuentro favorito de los amantes del buen café en la ciudad.</p>
+                <p>Trabajamos directamente con productores de café de Colombia, Costa Rica y Etiopía, asegurando que cada grano sea de origen sostenible y comercio justo.</p>
+                <p>Nuestro equipo de baristas certificados se dedica a extraer lo mejor de cada grano, creando experiencias únicas en cada taza.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="menu" id="menu">
+        <h2>Nuestro Menú</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <h3>Espresso</h3>
+                <p class="price">3.50€</p>
+                <p>Espresso clásico preparado con granos 100% arábica de origen colombiano. Tostado medio con notas de chocolate y caramelo.</p>
+            </div>
+            <div class="menu-item">
+                <h3>Cappuccino</h3>
+                <p class="price">4.50€</p>
+                <p>Espresso doble con leche vaporizada y espuma cremosa. El equilibrio perfecto entre café intenso y suavidad láctea.</p>
+            </div>
+            <div class="menu-item">
+                <h3>Latte</h3>
+                <p class="price">4.80€</p>
+                <p>Café con leche al estilo italiano. Más leche que el cappuccino, ideal para quienes prefieren un sabor más suave.</p>
+            </div>
+            <div class="menu-item">
+                <h3>Americano</h3>
+                <p class="price">3.80€</p>
+                <p>Espresso alargado con agua caliente. Para los que disfrutan de un café largo sin perder la intensidad del espresso.</p>
+            </div>
+            <div class="menu-item">
+                <h3>Flat White</h3>
+                <p class="price">4.70€</p>
+                <p>Especialidad australiana con espresso ristretto y microespuma de leche. Textura sedosa y sabor intenso.</p>
+            </div>
+            <div class="menu-item">
+                <h3>Cold Brew</h3>
+                <p class="price">5.20€</p>
+                <p>Café de extracción en frío durante 18 horas. Menos ácido, más dulce, perfecto para los días calurosos.</p>
+            </div>
+            <div class="menu-item">
+                <h3>Mocha</h3>
+                <p class="price">5.00€</p>
+                <p>Espresso con chocolate belga, leche vaporizada y crema. Un capricho irresistible para los amantes del chocolate.</p>
+            </div>
+            <div class="menu-item">
+                <h3>Café de Filtro</h3>
+                <p class="price">4.00€</p>
+                <p>Café de origen único preparado en V60. Rotamos orígenes semanalmente: Colombia, Etiopía, Costa Rica.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="specialties" id="especialidades">
+        <h2>Nuestras Especialidades</h2>
+        <div class="specialty-cards">
+            <div class="specialty-card">
+                <div class="icon">🌱</div>
+                <h3>100% Sostenible</h3>
+                <p>Todos nuestros granos provienen de fincas certificadas en comercio justo y agricultura sostenible.</p>
+            </div>
+            <div class="specialty-card">
+                <div class="icon">🏆</div>
+                <h3>Baristas Certificados</h3>
+                <p>Nuestro equipo cuenta con certificaciones SCA (Specialty Coffee Association) nivel profesional.</p>
+            </div>
+            <div class="specialty-card">
+                <div class="icon">☕</div>
+                <h3>Tostado Propio</h3>
+                <p>Tostamos nuestros granos en pequeños lotes cada semana para garantizar máxima frescura.</p>
+            </div>
+            <div class="specialty-card">
+                <div class="icon">🥐</div>
+                <h3>Repostería Artesanal</h3>
+                <p>Croissants, pasteles y galletas horneadas diariamente por nuestro pastelero especializado.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="location" id="ubicacion">
+        <h2>Visítanos</h2>
+        <div class="location-content">
+            <div class="map-placeholder">📍</div>
+            <div class="location-info">
+                <div class="info-item">
+                    <strong>📍 Dirección</strong>
+                    Calle del Café, 42<br>
+                    28001 Madrid, España
+                </div>
+                <div class="info-item">
+                    <strong>🕒 Horario</strong>
+                    Lunes a Viernes: 7:00 - 20:00<br>
+                    Sábados: 8:00 - 21:00<br>
+                    Domingos: 9:00 - 19:00
+                </div>
+                <div class="info-item">
+                    <strong>📞 Teléfono</strong>
+                    +34 912 345 678
+                </div>
+                <div class="info-item">
+                    <strong>✉️ Email</strong>
+                    info@cafelaesquina.es
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contacto">
+        <h2>Contáctanos</h2>
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+                <label for="name">Nombre</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Mensaje</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit" class="btn">Enviar Mensaje</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Café Artesanal La Esquina. Todos los derechos reservados.</p>
+        <div class="social-links">
+            <a href="#" title="Instagram">📷</a>
+            <a href="#" title="Facebook">📘</a>
+            <a href="#" title="Twitter">🐦</a>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling para enlaces de navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Función para manejar el envío del formulario
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('¡Gracias por tu mensaje! Te responderemos pronto.');
+            event.target.reset();
+        }
+
+        // Animación de aparición al hacer scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.menu-item, .specialty-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
