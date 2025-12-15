@@ -2,6 +2,6 @@ Explicar qué es llms.txt
 
 Ejemplo visual legítimo de uso llms.txt (web y llms.txt)
 
-Ejemplo practico - Enseñar pag web cafetería
+Ejemplo practico - Enseñar pag web cafetería + Preguntar Claude por la pizza favorita del desarrollador de la web
 
 Ejecutar en terminal el crawler que visita primero el llms.txt de la pagina web
